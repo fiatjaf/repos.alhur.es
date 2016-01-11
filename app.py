@@ -1,3 +1,4 @@
+import datetime
 import requests
 import os
 from collections import OrderedDict
@@ -51,6 +52,11 @@ def user(name):
         groups[prefix] = group
 
     return render_template('userpage.html', name=name, groups=groups)
+
+@app.after_request
+def add_header(response):
+    response.expires = datetime.datetime.now() + datetime.timedelta(minutes=60)
+    return response
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
