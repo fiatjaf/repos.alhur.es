@@ -38,12 +38,16 @@ def user(name):
     groups = OrderedDict()
     for repo_object in repos:
         try:
-            repo = repo_object["name"]
+            repo = {
+                "name": repo_object["name"],
+                "stars": repo_object["stargazers_count"]
+            }
         except:
+            print(repo_object)
             break
-        prefix, *_ = repo.split('-')
+        prefix, *_ = repo["name"].split('-')
         group = groups.get(prefix) or []
-        group.append(repo) if repo != prefix else group.insert(0, repo)
+        group.append(repo) if repo["name"] != prefix else group.insert(0, repo)
         groups[prefix] = group
 
     return render_template('userpage.html', name=name, groups=groups)

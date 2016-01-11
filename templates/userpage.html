@@ -11,17 +11,18 @@
   <li>
   {% if repos|length == 1 %}
     <a href=https://github.com/{{name}}/{{prefix}}>{{ prefix }}</a>
+    {{ repos[0].stars }}*
   {% else %}
     <strong>{{ prefix }}</strong>
     <ul>
     {% for repo in repos %}
       <li><a href=https://github.com/{{name}}/{{repos[0]}}>
-        {% if repo == prefix %}
+        {% if repo.name == prefix %}
           <strong>main repository</strong>
         {% else %}
-          {{ repo }}
-        {% endif %}
-      </a></li>
+          {{ repo.name }}
+        {% endif %}</a>
+      {{ repo.stars }}*</li>
     {% endfor %}
     </ul>
   {% endif %}
