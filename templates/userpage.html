@@ -1,0 +1,30 @@
+<!doctype html>
+
+<title>{{ name }}'s GitHub repositories</title>
+<link rel=stylesheet href=/static/style.css>
+</style>
+
+<h1>{{ name }}'s GitHub repositories</h1>
+
+<ul>
+{% for prefix, repos in groups.items() %}
+  <li>
+  {% if repos|length == 1 %}
+    <a href=https://github.com/{{name}}/{{prefix}}>{{ prefix }}</a>
+  {% else %}
+    <strong>{{ prefix }}</strong>
+    <ul>
+    {% for repo in repos %}
+      <li><a href=https://github.com/{{name}}/{{repos[0]}}>
+        {% if repo == prefix %}
+          <strong>main repository</strong>
+        {% else %}
+          {{ repo }}
+        {% endif %}
+      </a></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </li>
+{% endfor %}
+</ul>

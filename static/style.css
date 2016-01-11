@@ -1,0 +1,22 @@
+* {
+  font-family: monospace;
+}
+body > ul {
+  -webkit-columns: 300px;
+     -moz-columns: 300px;
+          columns: 300px;
+}
+li {
+  -webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+                 break-inside: avoid;
+}
+
+a {
+  text-decoration: none;
+  color: #6F4C0D;
+}
+a:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
